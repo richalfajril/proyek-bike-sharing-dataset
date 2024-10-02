@@ -9,6 +9,28 @@ import streamlit as st
 day_df = pd.read_csv('data/day.csv')
 hour_df = pd.read_csv('data/hour.csv')
 
+st.title("Bike Sharing Data Analysis")
+st.subheader("By Fadli Shidqi Firdaus")
+
+st.markdown("""
+## Pengantar
+Analisis ini bertujuan untuk memahami pola penggunaan layanan bike sharing dan faktor-faktor yang mempengaruhinya.
+Kita akan menjelajahi data harian dan per jam untuk mendapatkan wawasan yang berharga.
+""")
+
+# Menampilkan 5 data teratas dari data day
+st.subheader("Data Preview - Day")
+st.write(day_df.head())
+
+# Menampilkan 5 data teratas dari data hour
+st.subheader("Data Preview - Hour")
+st.write(hour_df.head())
+
+st.markdown("""
+## Data Cleaning
+Pada tahap ini, kita membersihkan data dengan menghapus kolom yang tidak diperlukan, 
+mengubah nama kolom untuk memperjelas data, dan mengkonversi tipe data yang sesuai.
+""")
 
 
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
