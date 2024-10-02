@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
@@ -7,6 +8,143 @@ import streamlit as st
 #Dataset
 day_df = pd.read_csv('data/day.csv')
 hour_df = pd.read_csv('data/hour.csv')
+
+
+
+day_df["dteday"] = pd.to_datetime(day_df["dteday"])
+hour_df["dteday"] = pd.to_datetime(hour_df["dteday"])
+
+day_df.rename(columns={
+    "instant": "no",
+    "dteday": "tanggal",
+    "season": "musim",
+    "yr": "tahun",
+    "mnth": "bulan",
+    "holiday": "hari_libur",
+    "weekday": "hari",
+    "workingday": "hari_kerja",
+    "weathersit": "cuaca",
+    "temp": "suhu",
+    "atemp": "suhu_subjek",
+    "hum": "kelembapan",
+    "windspeed": "kecepatan_angin",
+    "casual": "kasual",
+    "registered": "terdaftar",
+    "cnt": "total"
+}, inplace=True)
+
+hour_df.rename(columns={
+    "instant": "no",
+    "dteday": "tanggal",
+    "season": "musim",
+    "yr": "tahun",
+    "mnth": "bulan",
+    "holiday": "hari_libur",
+    "hr": "jam",
+    "weekday": "hari",
+    "workingday": "hari_kerja",
+    "weathersit": "cuaca",
+    "temp": "suhu",
+    "atemp": "suhu_subjek",
+    "hum": "kelembapan",
+    "windspeed": "kecepatan_angin",
+    "casual": "kasual",
+    "registered": "terdaftar",
+    "cnt": "total"
+}, inplace=True)
+
+categories = ['musim', 'bulan', 'hari', 'cuaca']
+
+for category in categories:
+    day_df[category] = day_df[category].astype('category')
+    hour_df[category] = hour_df[category].astype('category')
+
+def konversi (df, col_and_ctg):
+    for col, ctg in col_and_ctg.items():
+        df[col] = df[col].cat.rename_categories(ctg)
+    return df
+
+season_dict = {
+    'musim':{
+        1:'Semi',
+        2:'Panas',
+        3:'Gugur',
+        4:'Dingin'
+    }
+}
+
+day_df = konversi(day_df, season_dict)
+hour_df = konversi(hour_df, season_dict)
+
+month_dict = {
+    'bulan':{
+        1: 'Januari',
+        2: 'Februari',
+        3: 'Maret',
+        4: 'April',
+        5: 'Mei',
+        6: 'Juni',
+        7: 'Juli',
+        8: 'Agustus',
+        9: 'September',
+        10: 'Oktober',
+        11: 'November',
+        12: 'Desember'
+    }
+}
+
+day_df = konversi(day_df, month_dict)
+hour_df = konversi(hour_df, month_dict)
+
+day_dict = {
+    'hari':{
+        0: 'Minggu',
+        1: 'Senin',
+        2: 'Selasa',
+        3: 'Rabu',
+        4: 'Kamis',
+        5: 'Jumat',
+        6: 'Sabtu'
+    }
+}
+
+day_df = konversi(day_df, day_dict)
+hour_df = konversi(hour_df, day_dict)
+
+#Konversi Cuaca
+weather_dict = {
+    'cuaca':{
+        1: 'Cerah',
+        2: 'Berkabut',
+        3: 'Hujan/Salju Ringan',
+        4: 'Hujan/Salju Lebat'
+    }
+}
+
+day_df = konversi(day_df, weather_dict)
+hour_df = konversi(hour_df, weather_dict)
+
+year_mapping = {
+    0: '2011',
+    1: '2012'
+}
+
+day_df['tahun'] = day_df['tahun'].map(year_mapping)
+hour_df['tahun'] = hour_df['tahun'].map(year_mapping)
+
+def return_value(df):
+    df['suhu'] = (df['suhu'] * 41).round().astype(int)
+    df['suhu_subjek'] = (df['suhu_subjek'] * 50).round().astype(int)
+    df['kelembapan'] = (df['kelembapan'] * 100).round().astype(int)
+    df['kecepatan_angin'] = (df['kecepatan_angin'] * 67).round().astype(int)
+    return df
+
+
+hour_df = return_value(hour_df)
+day_df = return_value(day_df)
+
+hour_df['jam'] = hour_df['jam'].apply(lambda x: '{:02d}:00'.format(x))
+
 
 
 fig, ax = plt.subplots(figsize=(12, 6))
