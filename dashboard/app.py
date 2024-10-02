@@ -12,29 +12,12 @@ cday_df = pd.read_csv('cleaned_day_data.csv')
 chour_df = pd.read_csv('cleaned_hour_data.csv')
 
 st.title("Bike Sharing Data Analysis")
-st.subheader("By Fadli Shidqi Firdaus")
+st.subheader("oleh Richal Fajril")
 
 st.markdown("""
 ## Pengantar
-Analisis ini bertujuan untuk memahami pola penggunaan layanan bike sharing dan faktor-faktor yang mempengaruhinya.
-Kita akan menjelajahi data harian dan per jam untuk mendapatkan wawasan yang berharga.
+
 """)
-
-# Menampilkan 5 data teratas dari data day
-st.subheader("Data Preview - Day")
-st.write(day_df.head())
-
-# Menampilkan 5 data teratas dari data hour
-st.subheader("Data Preview - Hour")
-st.write(hour_df.head())
-
-st.markdown("""
-## Data Cleaning
-Berikut adalah data yang sudah clear
-""")
-
-st.subheader("5 Data Clear day.csv Teratas")
-st.write(cday_df.head())
 
 
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
@@ -172,7 +155,7 @@ day_df = return_value(day_df)
 hour_df['jam'] = hour_df['jam'].apply(lambda x: '{:02d}:00'.format(x))
 
 
-
+st.subheader()
 fig, ax = plt.subplots(figsize=(12, 6))
 sns.scatterplot(x=day_df['suhu'], y=day_df['total'], 
                 hue=day_df['total'],  # Menggunakan data hue yang sesuai
