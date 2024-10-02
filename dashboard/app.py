@@ -155,7 +155,7 @@ day_df = return_value(day_df)
 hour_df['jam'] = hour_df['jam'].apply(lambda x: '{:02d}:00'.format(x))
 
 
-st.subheader()
+st.subheader("Visualisasi korelasi suhu dan total penyewaan")
 fig, ax = plt.subplots(figsize=(12, 6))
 sns.scatterplot(x=day_df['suhu'], y=day_df['total'], 
                 hue=day_df['total'],  # Menggunakan data hue yang sesuai
