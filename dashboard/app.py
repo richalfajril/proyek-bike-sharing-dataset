@@ -8,6 +8,8 @@ import streamlit as st
 #Dataset
 day_df = pd.read_csv('data/day.csv')
 hour_df = pd.read_csv('data/hour.csv')
+cday_df = pd.read_csv('cleaned_day_data.csv')
+chour_df = pd.read_csv('cleaned_hour_data.csv')
 
 st.title("Bike Sharing Data Analysis")
 st.subheader("By Fadli Shidqi Firdaus")
@@ -28,9 +30,11 @@ st.write(hour_df.head())
 
 st.markdown("""
 ## Data Cleaning
-Pada tahap ini, kita membersihkan data dengan menghapus kolom yang tidak diperlukan, 
-mengubah nama kolom untuk memperjelas data, dan mengkonversi tipe data yang sesuai.
+Berikut adalah data yang sudah clear
 """)
+
+st.subheader("5 Data Clear day.csv Teratas")
+st.write(cday_df.head())
 
 
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
