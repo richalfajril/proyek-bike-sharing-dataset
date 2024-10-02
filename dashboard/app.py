@@ -167,7 +167,7 @@ st.write(hour_df.head())
 
 st.subheader("Exploratory Data")
 st.markdown("""
-## Perbandingan jumlah pengguna dan rentang suhu
+#### Perbandingan jumlah pengguna dan rentang suhu
 """)
 suhu_agg = round(day_df.groupby(
     by=pd.cut(day_df['suhu'], bins=[-10, 0, 10, 20, 30, 40, 50], include_lowest=True),
@@ -176,7 +176,7 @@ suhu_agg = round(day_df.groupby(
     'kasual': 'sum',
     'terdaftar': 'sum',
     'total': 'sum'
-}), 2).reset_index().sort_values(by='Total Jumlah Pengguna', ascending=False)
+}), 2).reset_index().sort_values(by=[], ascending=False)
 
 suhu_agg.columns = ['Rentang Suhu (°C)', 'Pengguna Kasual', 'Pengguna Terdaftar', 'Total Jumlah Pengguna']
 
