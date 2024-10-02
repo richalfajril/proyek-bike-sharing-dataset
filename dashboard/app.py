@@ -170,7 +170,7 @@ st.markdown("""
 #### Perbandingan jumlah pengguna dan rentang suhu
 """)
 suhu_agg = round(day_df.groupby(
-    by=pd.cut(day_df['suhu'], bins=[-10, 0, 10, 20, 30, 40, 50], include_lowest=True),
+    by=pd.cut(day_df['suhu'], include_lowest=True),
     observed=False
 ).agg({
     'kasual': 'sum',
