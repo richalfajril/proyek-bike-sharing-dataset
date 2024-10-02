@@ -22,13 +22,6 @@ st.write(day_df.sample(5))
 st.markdown("Membaca data hour.csv dan menampilkan 5 data acak")
 st.write(hour_df.sample(5))
 
-st.subheader("Data Cleaning")
-st.write("Data day.csv yang sudah dibersihkan:")
-st.write(day_df.head())
-
-st.write("Data hour.csv yang sudah dibersihkan:")
-st.write(hour_df.head())
-
 
 
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
@@ -164,6 +157,13 @@ hour_df = return_value(hour_df)
 day_df = return_value(day_df)
 
 hour_df['jam'] = hour_df['jam'].apply(lambda x: '{:02d}:00'.format(x))
+
+st.subheader("Data Cleaning")
+st.write("Data day.csv yang sudah dibersihkan:")
+st.write(day_df.head())
+
+st.write("Data hour.csv yang sudah dibersihkan:")
+st.write(hour_df.head())
 
 
 st.subheader("Visualisasi korelasi suhu dan total penyewaan")
