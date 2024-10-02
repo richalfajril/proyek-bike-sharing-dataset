@@ -176,7 +176,7 @@ suhu_agg = round(day_df.groupby(
     'kasual': 'sum',
     'terdaftar': 'sum',
     'total': 'sum'
-}), 2).reset_index().sort_values(by='total', ascending=False)
+}), 2).reset_index().sort_values(by=[], ascending=False)
 
 suhu_agg.columns = ['Rentang Suhu (°C)', 'Pengguna Kasual', 'Pengguna Terdaftar', 'Total Jumlah Pengguna']
 
