@@ -170,18 +170,18 @@ st.markdown("""
 #### Perbandingan jumlah pengguna dan rentang suhu
 """)
 suhu_agg = round(day_df.groupby(
-    by=pd.cut(day_df['suhu'],bins=[-10, 0, 10, 20, 30, 40, 50], include_lowest=True),
+    by=pd.cut(day_df['suhu'], bins=[-10, 0, 10, 20, 30, 40, 50], include_lowest=True), 
     observed=False
 ).agg({
     'kasual': 'sum',
     'terdaftar': 'sum',
     'total': 'sum'
-}), 2).reset_index().sort_values(by=[], ascending=False)
+}), 2).reset_index().sort_values(by='total', ascending=False)
 
 suhu_agg.columns = ['Rentang Suhu (°C)', 'Pengguna Kasual', 'Pengguna Terdaftar', 'Total Jumlah Pengguna']
 
 # Menampilkan DataFrame di Streamlit
-st.write("Data Agregasi Pengguna berdasarkan Rentang Suhu:")
+st.write("Data Pengguna berdasarkan Rentang Suhu:")
 st.dataframe(suhu_agg)
 
 st.subheader("Visualisasi korelasi suhu dan total penyewaan")
