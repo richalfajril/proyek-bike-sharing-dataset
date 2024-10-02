@@ -8,44 +8,23 @@ import streamlit as st
 day_df = pd.read_csv('data/day.csv')
 hour_df = pd.read_csv('data/hour.csv')
 
-## Streamlit app title
-st.title("Bike Sharing Data Analysis")
-st.subheader("oleh : Richal Fajril")
 
-st.markdown("""
-## **KARAKTERISTIK DATA**
-Baik hour.csv maupun day.csv memiliki kolom-kolom berikut, kecuali hr yang tidak tersedia di day.csv
+fig, ax = plt.subplots(figsize=(12, 6))
+sns.scatterplot(x=day_df['suhu'], y=day_df['total'], 
+                hue=day_df['total'],  # Menggunakan data hue yang sesuai
+                size=day_df['total'], 
+                palette='viridis',  
+                alpha=0.6,
+                ax=ax)
 
-- **instant:** indeks rekaman
-- **dteday:** tanggal
-- **season:** musim (1: semi, 2: panas, 3: gugur, 4: dingin)
-- **yr:** tahun (0: 2011, 1: 2012)
-- **mnth:** bulan (1 hingga 12)
-- **hr:** jam (0 hingga 23)
-- **holiday:** apakah hari tersebut adalah hari libur atau tidak
-- **weekday:** hari dalam seminggu
-- **workingday:** jika hari tersebut bukan akhir pekan maupun hari libur adalah 1, jika tidak 0.
-- **weathersit:**
-    - 1: Jelas, Beberapa awan, Sebagian berawan
-    - 2: Kabut + Berawan, Kabut + Awan terputus, Kabut + Beberapa awan, Kabut
-    - 3: Salju ringan, Hujan ringan + Badai petir + Awan tersebar, Hujan ringan + Awan tersebar
-    - 4: Hujan deras + Peluru es + Badai petir + Kabut, Salju + Kabut
-- **temp:** Suhu yang dinormalisasi dalam Celsius. Nilai dibagi 41 (maks)
-- **atemp:** Suhu yang dirasakan yang dinormalisasi dalam Celsius. Nilai dibagi 50 (maks)
-- **hum:** Kelembapan yang dinormalisasi. Nilai dibagi 100 (maks)
-- **windspeed:** Kecepatan angin yang dinormalisasi. Nilai dibagi 67 (maks)
-- **casual:** jumlah pengguna kasual
-- **registered:** jumlah pengguna terdaftar
-- **cnt:** jumlah total sepeda sewa termasuk kasual dan terdaftar
+# Menambahkan title dan label
+ax.set_title('Hubungan antara Suhu dan Total Penyewaan', fontsize=16)
+ax.set_xlabel('Suhu (°C)', fontsize=12)
+ax.set_ylabel('Total Penyewaan', fontsize=12)
 
-Sumber: readme.txt dalam zip dataset
-""")
+# Menambahkan grid dan legenda
+ax.legend(title='Total Penyewaan')
+ax.grid(True, linestyle='--', alpha=0.5)
 
-# Menampilkan 5 data teratas dari data day
-st.subheader("Menampilkan 5 data teratas dari data day.csv")
-st.write(day_df.head())
-
-# Menampilkan 5 data teratas dari data hour
-st.subheader("Menampilkan 5 data teratas dari data hour.csv")
-st.write(hour_df.head())
-
+# Menampilkan plot di Streamlit
+st.pyplot(fig)
