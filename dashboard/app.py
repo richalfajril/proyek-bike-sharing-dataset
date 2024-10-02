@@ -158,13 +158,15 @@ day_df = return_value(day_df)
 
 hour_df['jam'] = hour_df['jam'].apply(lambda x: '{:02d}:00'.format(x))
 
-st.subheader("Data Cleaning")
+st.markdown("##Data Cleaning")
 st.write("Data day.csv yang sudah dibersihkan:")
 st.write(day_df.head())
 
 st.write("Data hour.csv yang sudah dibersihkan:")
 st.write(hour_df.head())
 
+st.subheader("Exploratory Data")
+st.write()
 
 st.subheader("Visualisasi korelasi suhu dan total penyewaan")
 fig, ax = plt.subplots(figsize=(12, 6))
