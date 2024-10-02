@@ -14,10 +14,14 @@ chour_df = pd.read_csv('cleaned_hour_data.csv')
 st.title("Bike Sharing Data Analysis")
 st.subheader("oleh Richal Fajril")
 
-st.markdown("""
-## Pengantar
+st.subheader("Gathering Data")
 
-""")
+st.markdown("Membaca data day.csv dan menampilkan 5 data acak")
+st.write(day_df.sample(5))
+
+st.markdown("Membaca data hour.csv dan menampilkan 5 data acak")
+st.write(hour_df.sample(5))
+
 
 
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
