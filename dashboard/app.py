@@ -23,7 +23,7 @@ st.markdown("Membaca data hour.csv dan menampilkan 5 data acak")
 st.write(hour_df.sample(5))
 
 
-
+#Data Cleaning
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
 hour_df["dteday"] = pd.to_datetime(hour_df["dteday"])
 
@@ -158,6 +158,7 @@ day_df = return_value(day_df)
 
 hour_df['jam'] = hour_df['jam'].apply(lambda x: '{:02d}:00'.format(x))
 
+#Data Cleaning
 st.subheader("Data Cleaning")
 st.write("Data day.csv yang sudah dibersihkan:")
 st.write(day_df.head())
@@ -169,6 +170,8 @@ st.subheader("Exploratory Data")
 st.markdown("""
 #### Perbandingan jumlah pengguna dan rentang suhu
 """)
+
+#Perbandingan jumlah pengguna dan rentang suhu
 suhu_bins = [-10, 0, 10, 20, 30, 40, 50]
 suhu_labels = ['-10 - 0', '0 - 10', '10 - 20', '20 - 30', '30 - 40', '40 - 50']
 
@@ -183,6 +186,23 @@ suhu_agg = round(day_df.groupby(
 
 suhu_agg.columns = ['Rentang Suhu (°C)', 'Pengguna Kasual', 'Pengguna Terdaftar', 'Total Jumlah Pengguna']
 st.dataframe(suhu_agg)
+
+#Mengetahui korelasi suhu terhadap total pengguna
+st.markdown("""
+#### Mengetahui korelasi suhu terhadap total pengguna
+""")
+correlation = day_df['suhu'].corr(day_df['total'])
+
+if correlation > 0.7:
+    result = f"Korelasi positif yang sangat kuat bernilai: {correlation:.2f}"
+elif correlation > 0.5:
+    result = f"Korelasi positif yang kuat bernilai: {correlation:.2f}"
+elif correlation > 0:
+    result = f"Korelasi positif yang lemah bernilai: {correlation:.2f}"
+else:
+    result = f"Tidak ada korelasi yang signifikan. Nilai korelasi: {correlation:.2f}"
+
+st.write(result)
 
 st.subheader("Visualisasi korelasi suhu dan total penyewaan")
 fig, ax = plt.subplots(figsize=(12, 6))
