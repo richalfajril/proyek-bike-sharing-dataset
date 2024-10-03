@@ -323,11 +323,26 @@ st.markdown("""
 - Rentang suhu (20, 30) tampaknya menjadi rentang suhu yang optimal untuk menarik dan mempertahankan pengguna, terutama pengguna terdaftar.            
 """)
 #3
-st.write("Visualisasi korelasi suhu dan total penyewaan ")
+st.write("Visualisasi jumlah penyewaan sepeda berdasarkan suhu")
+sns.set_style("whitegrid")
+sns.set_palette("colorblind")
 
+plt.figure(figsize=(12, 6))
+
+sns.lineplot(x='suhu', y='total', data=day_df, marker='o', linewidth=2)
+plt.title('Jumlah Penyewaan Sepeda Berdasarkan Suhu', fontsize=16)
+plt.xlabel('Suhu (Celcius)', fontsize=12)
+plt.ylabel('Jumlah Penyewaan', fontsize=12)
+
+st.pyplot(plt)
 
 st.markdown("""
-            
+**Insight Chart 3:**
+- Secara umum, jumlah penyewaan sepeda cenderung meningkat seiring dengan kenaikan suhu. Ini menunjukkan bahwa cuaca yang lebih hangat mendorong lebih banyak orang untuk menyewa sepeda.
+- Terlihat ada rentang suhu tertentu di mana jumlah penyewaan mencapai puncaknya. Pada grafik ini, puncak penyewaan terjadi sekitar suhu 25 derajat Celcius. Ini mengindikasikan bahwa suhu ini dianggap paling nyaman bagi banyak orang untuk bersepeda.
+- Meskipun ada tren peningkatan secara keseluruhan, jumlah penyewaan juga mengalami fluktuasi. Ini bisa dipengaruhi oleh faktor lain selain suhu, seperti hari dalam seminggu, musim, atau event khusus.
+- Area yang diarsir di sekitar garis menunjukkan interval kepercayaan. Ini memberikan gambaran tentang seberapa yakin kita dengan estimasi jumlah penyewaan pada suhu tertentu. Semakin sempit area shading, semakin akurat estimasi kita.
+- Perusahaan dapat menjalankan kampanye promosi yang disesuaikan dengan suhu. Misalnya, menawarkan diskon khusus pada hari-hari yang diperkirakan memiliki suhu yang optimal untuk bersepeda.            
 """)
 
 
