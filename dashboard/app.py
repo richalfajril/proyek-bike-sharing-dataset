@@ -413,7 +413,19 @@ st.markdown("""
 st.markdown("""
 ### 3. Bagaimana kita dapat mengelompokkan hari dalam seminggu berdasarkan pola penyewaan sepeda dan cuaca untuk mengidentifikasi hari dengan karakteristik serupa?         
 """)
+weekday_weather_data = day_df.groupby(['hari', 'cuaca'], observed=False)['total'].mean().reset_index()
 
+st.write("Rata-rata Penyewaan berdasarkan Hari dan Cuaca:")
+st.dataframe(weekday_weather_data)
+
+total_bins = [0, 3000, 5000, 7000, 9000]
+total_labels = ['Sepi', 'Sedang', 'Ramai', 'Sangat Ramai']
+
+# Membuat kategori untuk total penyewaan
+weekday_weather_data['cluster'] = pd.cut(weekday_weather_data['total'], bins=total_bins, labels=total_labels, include_lowest=True)
+
+st.write("Data dengan Kategori Total Penyewaan:")
+st.dataframe(weekday_weather_data)
 
 
 st.markdown("""
