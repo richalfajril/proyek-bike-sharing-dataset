@@ -427,7 +427,40 @@ weekday_weather_data['cluster'] = pd.cut(weekday_weather_data['total'], bins=tot
 st.write("Data dengan Kategori Total Penyewaan:")
 st.dataframe(weekday_weather_data)
 
+# Membuat pivot table
+pivot_table = weekday_weather_data.pivot_table(
+    values='total', 
+    index='hari', 
+    columns='cuaca', 
+    aggfunc='sum', 
+    observed=False
+)
+
+# Membuat heatmap
+plt.figure(figsize=(12, 6))
+sns.heatmap(
+    pivot_table, 
+    cmap='viridis', 
+    annot=True, 
+    fmt='.0f', 
+    linewidths=.5
+)
+plt.title('Cluster Hari Berdasarkan Total Penyewaan dan Cuaca')
+plt.xlabel('Cuaca')
+plt.ylabel('Hari')
+
+# Menampilkan heatmap di Streamlit
+st.pyplot(plt)
 
 st.markdown("""
-            
+**Interpretasi Hasil Clustering**
+
+Grafik ini menunjukkan hubungan antara hari dalam seminggu, kondisi cuaca, dan jumlah total penyewaan. Warna yang lebih terang mengindikasikan jumlah penyewaan yang lebih tinggi, sementara warna yang lebih gelap menunjukkan jumlah penyewaan yang lebih rendah.
+
+- Akhir pekan paling ramai: Baik hari Sabtu maupun Minggu, jumlah penyewaan cenderung lebih tinggi dibandingkan hari kerja.
+- Cuaca cerah adalah raja: Pada hari-hari cerah, terlepas dari hari apa pun, jumlah penyewaan selalu tinggi. Ini menunjukkan bahwa cuaca cerah adalah faktor utama yang mendorong orang untuk menyewa sepeda.
+- Hujan dan salju adalah musuh: Cuaca buruk seperti hujan atau salju sangat mengurangi minat masyarakat untuk menyewa sepeda.
+- Cuaca berkabut punya pengaruh sedang: Cuaca berkabut mengurangi jumlah penyewaan, namun tidak sedrastis hujan atau salju.
+- Perusahaan penyewaan sepeda: Dapat mengantisipasi fluktuasi permintaan dan menyesuaikan jumlah sepeda yang tersedia.
+- Pemerintah: Dapat digunakan dalam perencanaan infrastruktur sepeda dan promosi kegiatan bersepeda.            
 """)
