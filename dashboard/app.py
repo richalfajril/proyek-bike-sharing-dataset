@@ -388,15 +388,15 @@ plt.xlabel('Kecepatan Angin (km/h)', fontsize=14)
 plt.ylabel('Total Penyewaan Sepeda', fontsize=14)
 
 plt.annotate(f"Tertinggi: {most_wspeed['kecepatan_angin']} km/h", 
-             xy=(most_wspeed['kecepatan_angin'], most_wspeed['total']), 
-             xytext=(most_wspeed['kecepatan_angin'], most_wspeed['total'] + 10),
-             fontsize=12, color='green')
+                xy=(most_wspeed['kecepatan_angin'], most_wspeed['total']), 
+                xytext=(most_wspeed['kecepatan_angin'], most_wspeed['total'] + 10),
+                fontsize=12, color='green')
 
 plt.annotate(f"Terendah: {least_wspeed['kecepatan_angin']} km/h", 
-             xy=(least_wspeed['kecepatan_angin'], least_wspeed['total']), 
-             xytext=(least_wspeed['kecepatan_angin'], least_wspeed['total'] + 10),
-             arrowprops=dict(facecolor='red', shrink=0.05),
-             fontsize=12, color='red')
+                xy=(least_wspeed['kecepatan_angin'], least_wspeed['total']), 
+                xytext=(least_wspeed['kecepatan_angin'], least_wspeed['total'] + 10),
+                arrowprops=dict(facecolor='red', shrink=0.05),
+                fontsize=12, color='red')
 
 plt.grid(True)
 st.pyplot(plt)
