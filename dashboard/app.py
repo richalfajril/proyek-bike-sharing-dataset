@@ -301,3 +301,59 @@ st.markdown("""
 - Terdapat kecenderungan positif antara suhu dan total penyewaan. Artinya, semakin tinggi suhu, cenderung semakin banyak jumlah sepeda yang disewa. Hal ini mengindikasikan bahwa cuaca yang hangat atau panas mendorong lebih banyak orang untuk menggunakan sepeda.
 - Terlihat adanya pengelompokan data pada rentang suhu tertentu, terutama pada suhu yang lebih hangat. Hal ini menunjukkan bahwa pada rentang suhu tertentu, terdapat lonjakan permintaan terhadap penyewaan sepeda.
 """)
+#2
+st.write("Visualisasi perbandingan jumlah pengguna berdasarkan rentang suhu ")
+
+plt.figure(figsize=(12, 6))
+
+sns.barplot(x='Rentang Suhu (°C)', y='value', hue='variable', data=pd.melt(suhu_agg, id_vars=['Rentang Suhu (°C)']))
+plt.title('Perbandingan Jumlah Pengguna Berdasarkan Rentang Suhu')
+plt.xlabel('Rentang Suhu (°C)')
+plt.ylabel('Jumlah Pengguna')
+plt.legend(title='Jenis Pengguna')
+
+st.pyplot(plt)
+
+st.markdown("""
+**Insight Chart 2:**
+- Secara umum, jumlah pengguna cenderung meningkat seiring dengan kenaikan suhu, terutama untuk pengguna terdaftar. Hal ini mengindikasikan bahwa suhu yang lebih tinggi mungkin lebih disukai oleh pengguna terdaftar.
+- Jumlah pengguna kasual juga cenderung meningkat seiring dengan kenaikan suhu, namun tidak setajam peningkatan pengguna terdaftar. Ini menunjukkan bahwa suhu juga mempengaruhi perilaku pengguna kasual, meskipun tidak sebesar pengaruhnya pada pengguna terdaftar.
+- Jumlah pengguna kasual juga cenderung meningkat seiring dengan kenaikan suhu, namun tidak setajam peningkatan pengguna terdaftar. Ini menunjukkan bahwa suhu juga mempengaruhi perilaku pengguna kasual, meskipun tidak sebesar pengaruhnya pada pengguna terdaftar.
+- Grafik total pengguna mengikuti tren yang serupa dengan pengguna terdaftar, menunjukkan bahwa pengguna terdaftar memberikan kontribusi yang lebih besar terhadap peningkatan total pengguna.
+- Rentang suhu (20, 30) tampaknya menjadi rentang suhu yang optimal untuk menarik dan mempertahankan pengguna, terutama pengguna terdaftar.            
+""")
+#3
+st.write("Visualisasi korelasi suhu dan total penyewaan ")
+
+
+st.markdown("""
+            
+""")
+
+
+#pertanyaan 2
+st.markdown("""
+            
+""")
+st.write("Visualisasi korelasi suhu dan total penyewaan ")
+
+
+st.markdown("""
+            
+""")
+
+
+st.write("Visualisasi korelasi suhu dan total penyewaan ")
+
+
+st.markdown("""
+            
+""")
+
+
+st.write("Visualisasi korelasi suhu dan total penyewaan ")
+
+
+st.markdown("""
+            
+""")
