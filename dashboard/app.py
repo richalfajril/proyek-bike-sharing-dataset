@@ -427,6 +427,7 @@ weekday_weather_data['cluster'] = pd.cut(weekday_weather_data['total'], bins=tot
 st.write("Data dengan Kategori Total Penyewaan:")
 st.dataframe(weekday_weather_data)
 
+st.write("Visualisasi Clustering:")
 # Membuat pivot table
 pivot_table = weekday_weather_data.pivot_table(
     values='total', 
@@ -463,4 +464,11 @@ Grafik ini menunjukkan hubungan antara hari dalam seminggu, kondisi cuaca, dan j
 - Cuaca berkabut punya pengaruh sedang: Cuaca berkabut mengurangi jumlah penyewaan, namun tidak sedrastis hujan atau salju.
 - Perusahaan penyewaan sepeda: Dapat mengantisipasi fluktuasi permintaan dan menyesuaikan jumlah sepeda yang tersedia.
 - Pemerintah: Dapat digunakan dalam perencanaan infrastruktur sepeda dan promosi kegiatan bersepeda.            
+""")
+
+st.subheader("Kesimpulan:")
+st.markdown("""
+- Suhu yang lebih hangat mendorong peningkatan jumlah penyewaan sepeda. Puncak penyewaan terjadi pada suhu sekitar 25 derajat Celcius, menunjukkan bahwa suhu ini paling disukai pengguna. Pengguna terdaftar lebih sensitif terhadap perubahan suhu dibandingkan pengguna kasual. Meskipun demikian, kedua kelompok pengguna menunjukkan peningkatan permintaan saat suhu naik. Faktor lain seperti hari dalam seminggu dan musim juga dapat mempengaruhi jumlah penyewaan.
+- Analisis menunjukkan bahwa hubungan antara kecepatan angin dan jumlah penyewaan sepeda tidak sesederhana yang diperkirakan
+- Grafik heatmap ini memberikan gambaran yang jelas tentang bagaimana cuaca dan hari dalam seminggu mempengaruhi jumlah penyewaan sepeda. Dengan memahami pola ini, perusahaan penyewaan sepeda dapat mengambil langkah-langkah yang lebih efektif untuk meningkatkan bisnis
 """)
