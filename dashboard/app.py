@@ -168,7 +168,7 @@ st.write(hour_df.head())
 
 st.subheader("Exploratory Data")
 st.markdown("""
-#### Perbandingan jumlah pengguna dan rentang suhu
+##### 1. Perbandingan jumlah pengguna dan rentang suhu
 """)
 
 #Perbandingan jumlah pengguna dan rentang suhu
@@ -190,7 +190,7 @@ st.dataframe(suhu_agg)
 
 #Mengetahui korelasi suhu terhadap total pengguna
 st.markdown("""
-#### Mengetahui korelasi suhu terhadap total pengguna
+##### 2. Mengetahui korelasi suhu terhadap total pengguna
 """)
 correlation = day_df['suhu'].corr(day_df['total'])
 
@@ -207,7 +207,7 @@ st.write(result)
 
 #Mengetahui suhu yang sering dipilih pengguna untuk meminjam sepeda
 st.markdown("""
-#### Mengetahui suhu yang sering dipilih pengguna untuk meminjam sepeda
+##### 3. Mengetahui suhu yang sering dipilih pengguna untuk meminjam sepeda
 """)
 choose_temp = day_df.groupby('suhu', observed=True)['total'].sum().reset_index()
 most_temp = choose_temp.loc[choose_temp['total'].idxmax()]
@@ -221,7 +221,7 @@ st.write(f"Suhu: {least_temp['suhu']}°C - Total Penyewaan: {least_temp['total']
 
 #Perbandingan jumlah pengguna dan kecepatan angin
 st.markdown("""
-#### Perbandingan jumlah pengguna dan kecepatan angin
+##### 4. Perbandingan jumlah pengguna dan kecepatan angin
 """)
 kecepatan_bins = [0, 10, 20, 30, 40]
 kecepatan_labels = ['0 - 10 km/h', '10 - 20 km/h', '20 - 30 km/h', '30 - 40 km/h']
@@ -242,7 +242,7 @@ st.dataframe(user_v_windspeed)
 
 #Mengetahui korelasi kecepatan angin terhadap pengguna
 st.markdown("""
-#### Mengetahui korelasi kecepatan angin terhadap pengguna
+##### 5. Mengetahui korelasi kecepatan angin terhadap pengguna
 """)
 corr_wind = day_df[['kecepatan_angin', 'total']].corr().iloc[0, 1]
 
@@ -259,7 +259,7 @@ st.write(correlation_message)
 
 # Mengetahui variasi jumlah pengguna terhadap tinggi atau rendahnya angin
 st.markdown("""
-####  Mengetahui variasi jumlah pengguna terhadap tinggi atau rendahnya angin
+#####  6. Mengetahui variasi jumlah pengguna terhadap tinggi atau rendahnya angin
 """)
 windspeed = day_df.groupby('kecepatan_angin', observed=True)['total'].sum().reset_index()
 most_wspeed = windspeed.loc[windspeed['total'].idxmax()]
@@ -273,7 +273,7 @@ st.write(f"Kecepatan Angin: {least_wspeed['kecepatan_angin']} km/h, Total Penyew
 #Visualisasi Data
 st.subheader("Visualisasi Data")
 st.markdown("""
-####Pertanyaan 1: Bagaimana suhu mempengaruhi jumlah user? Apakah terdapat batas suhu tertentu yang menunjukkan perubahan signifikan dalam jumlah user?
+##### Pertanyaan 1: Bagaimana suhu mempengaruhi jumlah user? Apakah terdapat batas suhu tertentu yang menunjukkan perubahan signifikan dalam jumlah user?
 """)
 st.write("Visualisasi korelasi suhu dan total penyewaan ")
 fig, ax = plt.subplots(figsize=(12, 6))
