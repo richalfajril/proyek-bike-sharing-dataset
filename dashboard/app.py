@@ -185,6 +185,7 @@ suhu_agg = round(day_df.groupby(
 }), 2).reset_index().sort_values(by=[], ascending=False)
 
 suhu_agg.columns = ['Rentang Suhu (°C)', 'Pengguna Kasual', 'Pengguna Terdaftar', 'Total Jumlah Pengguna']
+st.write("Data Pengguna berdasarkan Rentang Suhu:")
 st.dataframe(suhu_agg)
 
 #Mengetahui korelasi suhu terhadap total pengguna
@@ -243,16 +244,38 @@ st.dataframe(user_v_windspeed)
 st.markdown("""
 #### Mengetahui korelasi kecepatan angin terhadap pengguna
 """)
+corr_wind = day_df[['kecepatan_angin', 'total']].corr().iloc[0, 1]
 
+if corr_wind > 0.7:
+    correlation_message = f"Korelasi positif yang sangat kuat bernilai: {corr_wind:.2f}"
+elif corr_wind > 0.5:
+    correlation_message = f"Korelasi positif yang kuat bernilai: {corr_wind:.2f}"
+elif corr_wind < 0:
+    correlation_message = f"Korelasi negatif yang lemah bernilai: {corr_wind:.2f}"
+else:
+    correlation_message = f"Tidak ada korelasi yang signifikan: {corr_wind:.2f}"
+
+st.write(correlation_message)
 
 # Mengetahui variasi jumlah pengguna terhadap tinggi atau rendahnya angin
 st.markdown("""
 ####  Mengetahui variasi jumlah pengguna terhadap tinggi atau rendahnya angin
 """)
+windspeed = day_df.groupby('kecepatan_angin', observed=True)['total'].sum().reset_index()
+most_wspeed = windspeed.loc[windspeed['total'].idxmax()]
+least_wspeed = windspeed.loc[windspeed['total'].idxmin()]
 
+st.write("Kecepatan angin dengan penyewaan sepeda tertinggi:")
+st.write(f"Kecepatan Angin: {most_wspeed['kecepatan_angin']} km/h, Total Penyewaan: {most_wspeed['total']}")
+st.write("Kecepatan angin penyewaan sepeda terendah:")
+st.write(f"Kecepatan Angin: {least_wspeed['kecepatan_angin']} km/h, Total Penyewaan: {least_wspeed['total']}")
 
-
-st.subheader("Visualisasi korelasi suhu dan total penyewaan")
+#Visualisasi Data
+st.subheader("Visualisasi Data")
+st.markdown("""
+####Pertanyaan 1: Bagaimana suhu mempengaruhi jumlah user? Apakah terdapat batas suhu tertentu yang menunjukkan perubahan signifikan dalam jumlah user?
+""")
+st.write("Visualisasi korelasi suhu dan total penyewaan ")
 fig, ax = plt.subplots(figsize=(12, 6))
 sns.scatterplot(x=day_df['suhu'], y=day_df['total'], 
                 hue=day_df['total'],  # Menggunakan data hue yang sesuai
@@ -272,3 +295,9 @@ ax.grid(True, linestyle='--', alpha=0.5)
 
 # Menampilkan plot di Streamlit
 st.pyplot(fig)
+
+st.markdown("""
+**Insight Chart 1:**
+- Terdapat kecenderungan positif antara suhu dan total penyewaan. Artinya, semakin tinggi suhu, cenderung semakin banyak jumlah sepeda yang disewa. Hal ini mengindikasikan bahwa cuaca yang hangat atau panas mendorong lebih banyak orang untuk menggunakan sepeda.
+- Terlihat adanya pengelompokan data pada rentang suhu tertentu, terutama pada suhu yang lebih hangat. Hal ini menunjukkan bahwa pada rentang suhu tertentu, terdapat lonjakan permintaan terhadap penyewaan sepeda.
+""")
