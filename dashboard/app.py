@@ -318,7 +318,6 @@ st.markdown("""
 **Insight Chart 2:**
 - Secara umum, jumlah pengguna cenderung meningkat seiring dengan kenaikan suhu, terutama untuk pengguna terdaftar. Hal ini mengindikasikan bahwa suhu yang lebih tinggi mungkin lebih disukai oleh pengguna terdaftar.
 - Jumlah pengguna kasual juga cenderung meningkat seiring dengan kenaikan suhu, namun tidak setajam peningkatan pengguna terdaftar. Ini menunjukkan bahwa suhu juga mempengaruhi perilaku pengguna kasual, meskipun tidak sebesar pengaruhnya pada pengguna terdaftar.
-- Jumlah pengguna kasual juga cenderung meningkat seiring dengan kenaikan suhu, namun tidak setajam peningkatan pengguna terdaftar. Ini menunjukkan bahwa suhu juga mempengaruhi perilaku pengguna kasual, meskipun tidak sebesar pengaruhnya pada pengguna terdaftar.
 - Grafik total pengguna mengikuti tren yang serupa dengan pengguna terdaftar, menunjukkan bahwa pengguna terdaftar memberikan kontribusi yang lebih besar terhadap peningkatan total pengguna.
 - Rentang suhu (20, 30) tampaknya menjadi rentang suhu yang optimal untuk menarik dan mempertahankan pengguna, terutama pengguna terdaftar.            
 """)
