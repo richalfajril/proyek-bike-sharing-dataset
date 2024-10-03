@@ -20,7 +20,7 @@ https://richalfajril-dicoding.streamlit.app/
 2. **Navigate to the project directory**:
 
    ```bash
-   cd Submission_Dicoding_Verry
+   cd richal-bike-sharing-data-set
    ```
 
 3. **Create a virtual environment**:
@@ -48,7 +48,6 @@ https://richalfajril-dicoding.streamlit.app/
 
 6. **Run the Streamlit app**:
    ```bash
-   cd dashboard
    streamlit run dashboard/app.py
    ```
 
