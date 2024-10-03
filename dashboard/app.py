@@ -375,15 +375,45 @@ Variasi yang Tinggi: Jumlah penyewaan sepeda sangat bervariasi pada setiap tingk
 """)
 
 
-st.write("Visualisasi korelasi suhu dan total penyewaan ")
+st.write("Visualisasi perbandingan pengguna dan kecepatan angin ")
+plt.figure(figsize=(12, 6))
 
+sns.barplot(x=windspeed['kecepatan_angin'], 
+            y=windspeed['total'], 
+            hue=windspeed['kecepatan_angin'],  
+            palette='coolwarm',
+            legend=False)
+
+plt.title('Total Penyewaan Sepeda berdasarkan Kecepatan Angin', fontsize=16)
+plt.xlabel('Kecepatan Angin (km/h)', fontsize=14)
+plt.ylabel('Total Penyewaan Sepeda', fontsize=14)
+
+plt.annotate(f"Tertinggi: {most_wspeed['kecepatan_angin']} km/h", 
+             xy=(most_wspeed['kecepatan_angin'], most_wspeed['total']), 
+             xytext=(most_wspeed['kecepatan_angin'], most_wspeed['total'] + 10),
+             fontsize=12, color='green')
+
+plt.annotate(f"Terendah: {least_wspeed['kecepatan_angin']} km/h", 
+             xy=(least_wspeed['kecepatan_angin'], least_wspeed['total']), 
+             xytext=(least_wspeed['kecepatan_angin'], least_wspeed['total'] + 10),
+             arrowprops=dict(facecolor='red', shrink=0.05),
+             fontsize=12, color='red')
+
+plt.grid(True)
+st.pyplot(plt)
 
 st.markdown("""
+**Insight Chart 2**
+- Jumlah penyewaan sepeda mencapai puncaknya pada kecepatan angin sekitar 10 km/h. Ini menunjukkan bahwa kondisi angin dengan kecepatan sekitar 10 km/h adalah kondisi yang paling ideal bagi banyak orang untuk menyewa sepeda.
+- Semakin tinggi kecepatan angin di atas 10 km/h, jumlah penyewaan sepeda cenderung menurun. Ini mengindikasikan bahwa angin yang terlalu kencang dapat mengurangi minat masyarakat untuk menyewa sepeda.
+- Pada kecepatan angin yang sangat rendah (di bawah 5 km/h), jumlah penyewaan sepeda juga cenderung lebih sedikit. Ini mungkin karena beberapa faktor, seperti suhu yang terlalu panas atau kondisi cuaca yang tidak mendukung aktivitas di luar ruangan.
             
 """)
 
+st.markdown("""
+### 3. Bagaimana kita dapat mengelompokkan hari dalam seminggu berdasarkan pola penyewaan sepeda dan cuaca untuk mengidentifikasi hari dengan karakteristik serupa?         
+""")
 
-st.write("Visualisasi korelasi suhu dan total penyewaan ")
 
 
 st.markdown("""
