@@ -348,13 +348,30 @@ st.markdown("""
 
 #pertanyaan 2
 st.markdown("""
-            
+### Pertanyaan 2: Apakah kecepatan angin yang lebih tinggi cenderung menghasilkan jumlah user yang lebih rendah atau sebaliknya?            
 """)
-st.write("Visualisasi korelasi suhu dan total penyewaan ")
+st.write("Visualisasi korelasi kecepatan angin dan total penyewaan")
+plt.figure(figsize=(12, 6))
+sns.scatterplot(x=day_df['kecepatan_angin'], y=day_df['total'], 
+                hue='total',  
+                size='total',  
+                palette='viridis',  
+                alpha=0.6,
+                data=day_df)
 
+plt.title('Hubungan antara Kecepatan Angin dan Total Penyewaan', fontsize=16)
+plt.xlabel('Kecepatan Angin (km/h)', fontsize=12)
+plt.ylabel('Total Penyewaan', fontsize=12)
+plt.legend(title='Total Penyewaan')
+plt.grid(True, linestyle='--', alpha=0.5)
+
+st.pyplot(plt)
 
 st.markdown("""
-            
+**Insight Chart 1:**
+-  Kecepatan angin tampaknya tidak menjadi faktor dominan yang mempengaruhi jumlah penyewaan sepeda dalam dataset ini.
+Variasi yang Tinggi: Jumlah penyewaan sepeda sangat bervariasi pada setiap tingkat kecepatan angin, menunjukkan bahwa faktor lain mungkin lebih berpengaruh.
+- Jumlah penyewaan sepeda sangat bervariasi pada setiap tingkat kecepatan angin, menunjukkan bahwa faktor lain mungkin lebih berpengaruh.            
 """)
 
 
