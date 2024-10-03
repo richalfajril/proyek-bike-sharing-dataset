@@ -204,6 +204,22 @@ else:
 
 st.write(result)
 
+#Mengetahui suhu yang sering dipilih pengguna untuk meminjam sepeda
+st.markdown("""
+#### Mengetahui suhu yang sering dipilih pengguna untuk meminjam sepeda
+""")
+choose_temp = day_df.groupby('suhu', observed=True)['total'].sum().reset_index()
+most_temp = choose_temp.loc[choose_temp['total'].idxmax()]
+least_temp = choose_temp.loc[choose_temp['total'].idxmin()]
+
+st.write("Suhu dengan penyewaan sepeda tertinggi:")
+st.write(f"Suhu: {most_temp['suhu']}°C - Total Penyewaan: {most_temp['total']}")
+
+st.write("Suhu dengan penyewaan sepeda terendah:")
+st.write(f"Suhu: {least_temp['suhu']}°C - Total Penyewaan: {least_temp['total']}")
+
+
+
 st.subheader("Visualisasi korelasi suhu dan total penyewaan")
 fig, ax = plt.subplots(figsize=(12, 6))
 sns.scatterplot(x=day_df['suhu'], y=day_df['total'], 
