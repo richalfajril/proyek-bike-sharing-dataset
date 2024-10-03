@@ -218,6 +218,38 @@ st.write(f"Suhu: {most_temp['suhu']}°C - Total Penyewaan: {most_temp['total']}"
 st.write("Suhu dengan penyewaan sepeda terendah:")
 st.write(f"Suhu: {least_temp['suhu']}°C - Total Penyewaan: {least_temp['total']}")
 
+#Perbandingan jumlah pengguna dan kecepatan angin
+st.markdown("""
+#### Perbandingan jumlah pengguna dan kecepatan angin
+""")
+kecepatan_bins = [0, 10, 20, 30, 40]
+kecepatan_labels = ['0 - 10 km/h', '10 - 20 km/h', '20 - 30 km/h', '30 - 40 km/h']
+
+user_v_windspeed = round(day_df.groupby(
+    by=pd.cut(day_df['kecepatan_angin'], bins=kecepatan_bins, labels=kecepatan_labels, include_lowest=True, right=False), 
+    observed=False
+).agg({
+    'suhu': 'mean',
+    'suhu_subjek': 'mean',
+    'total': 'sum'
+}), 2).reset_index().sort_values(by=[], ascending=False)
+
+user_v_windspeed.columns = ['Rentang Kecepatan Angin (km/h)', 'Rata-rata Suhu (°C)', 'Rata-rata Suhu Subjektif (°C)', 'Total Jumlah Pengguna']
+
+st.write("Data Pengguna berdasarkan Rentang Kecepatan Angin:")
+st.dataframe(user_v_windspeed)
+
+#Mengetahui korelasi kecepatan angin terhadap pengguna
+st.markdown("""
+#### Mengetahui korelasi kecepatan angin terhadap pengguna
+""")
+
+
+# Mengetahui variasi jumlah pengguna terhadap tinggi atau rendahnya angin
+st.markdown("""
+####  Mengetahui variasi jumlah pengguna terhadap tinggi atau rendahnya angin
+""")
+
 
 
 st.subheader("Visualisasi korelasi suhu dan total penyewaan")
