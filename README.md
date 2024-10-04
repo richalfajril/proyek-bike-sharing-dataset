@@ -6,7 +6,7 @@
 
 ## Streamlit
 
-https://richalfajril-dicoding.streamlit.app/
+https://richal-bike-sharing-data-set.streamlit.app
 
 
 ## Installation
@@ -53,7 +53,7 @@ https://richalfajril-dicoding.streamlit.app/
 
 ## Deployment
 
-This app is deployed on Streamlit Cloud. You can view the live version [here](https://richalfajril-dicoding.streamlit.app/).
+This app is deployed on Streamlit Cloud. You can view the live version [here](https://richal-bike-sharing-data-set.streamlit.app/).
 
 ## Dependencies
 
