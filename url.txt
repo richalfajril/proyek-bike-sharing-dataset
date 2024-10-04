@@ -1,1 +1,1 @@
-https://richalfajril-dicoding.streamlit.app/
+https://richal-bike-sharing-data-set.streamlit.app/
